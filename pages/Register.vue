@@ -8,33 +8,36 @@
 		  	filled
 			label="Email"
 			type="email"
-			:rules="[ (val:any) => val && val.length > 0 || 'Email obligatorio']"
+			:rules="[ (val:string) => val && val.length > 0 || 'Email obligatorio']"
 			lazy-rules
 		  />
 	
-		  <q-input v-model="password" label="Contraseña" filled :type="isPwd ? 'password' : 'text'">
+		  <q-input v-model="password" label="Contraseña" filled :type="isPwdVisible ? 'password' : 'text'" :rules="[ (val:string) => val && val.length >= 5 || 'Minimo 5 caracteres']">
 				<template v-slot:append>
 					<q-icon
-						:name="isPwd ? 'visibility_off' : 'visibility'"
+						:name="isPwdVisible ? 'visibility_off' : 'visibility'"
 						class="cursor-pointer"
-						@click="isPwd = !isPwd"
+						@click="isPwdVisible = !isPwdVisible"
 					/>
 				</template>
 			</q-input>
 		
-		  <q-input v-model="password" label="Repetir contraseña" filled :type="isPwd ? 'password' : 'text'">
+		  <q-input v-model="repeatedPassword" label="Repetir contraseña" filled
+		  :type="isRepeatedPwdVisible ? 'password' : 'text'"
+		  :rules="[ (val:string) => val && val === password || 'Las contraseñas deben coincidir']"
+		  >
 				<template v-slot:append>
 					<q-icon
-						:name="isPwd ? 'visibility_off' : 'visibility'"
+						:name="isRepeatedPwdVisible ? 'visibility_off' : 'visibility'"
 						class="cursor-pointer"
-						@click="isPwd = !isPwd"
+						@click="isRepeatedPwdVisible = !isRepeatedPwdVisible"
 					/>
 				</template>
 			</q-input>
 
 			
 			<div class="action-btns">
-				<q-btn block label="Registrarme" type="submit" color="primary" />
+				<q-btn block label="Registrarme" type="submit" color="primary" :disabled="!canRegister" />
 			</div>
 			
 			<q-separator inset />
@@ -57,7 +60,13 @@ const router = useRouter()
 
 const email = ref('');
 const password = ref('');
-const isPwd = ref(true);
+const isPwdVisible = ref(true);
+const repeatedPassword = ref('');
+const isRepeatedPwdVisible = ref(true);
+
+const canRegister = computed(() => {
+	return email.value && password.value && password.value === repeatedPassword.value
+});
 
 
 const onSubmit = () => {

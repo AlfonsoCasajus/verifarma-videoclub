@@ -8,7 +8,7 @@
 		filled
 		label="Email"
 		type="email"
-		:rules="[ (val:any) => val && val.length > 0 || 'Email obligatorio']"
+		:rules="[ (val:string) => val && val.length > 0 || 'Email obligatorio']"
 		lazy-rules
 		/>
 
@@ -24,7 +24,7 @@
 
 		
 		<div class="action-btns">
-			<q-btn block label="Ingresar" type="submit" color="primary" />
+			<q-btn block label="Ingresar" type="submit" color="primary" :disable="!canLogin" />
 		</div>
 	</q-form>
 
@@ -52,6 +52,10 @@ const isPwd = ref(true);
 const onSubmit = () => {
 	router.push({ name: 'movies' });
 }
+
+const canLogin = computed(() => {
+	return email.value && password.value;
+})
 </script>
 
 
