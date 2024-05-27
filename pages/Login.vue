@@ -1,83 +1,81 @@
 <template>
-	<div v-if="errorMsg" class="error-message">
-		{{ errorMsg }}
-	</div>
-	<q-form
-		class="q-gutter-md"
-		@submit="onSubmit"
-	>
-		<q-input
-			v-model="email"
-			filled
-			label="Email"
-			type="email"
-			bg-color="white"
-			:rules="[ (val:string) => val && val.length > 0 || 'Email obligatorio']"
-			lazy-rules
-		/>
+  <div>
+    <div v-if="errorMsg" class="error-message">
+      {{ errorMsg }}
+    </div>
+    <q-form
+      class="q-gutter-md"
+      @submit="onSubmit"
+    >
+      <q-input
+        v-model="email"
+        filled
+        label="Email"
+        type="email"
+        bg-color="white"
+        :rules="[ (val:string) => val && val.length > 0 || 'Email obligatorio']"
+        lazy-rules
+      />
 
-		<q-input v-model="password" bg-color="white" label="Contraseña" filled :type="isPwd ? 'password' : 'text'">
-			<template #append>
-				<q-icon
-					:name="isPwd ? 'visibility_off' : 'visibility'"
-					class="cursor-pointer"
-					@click="isPwd = !isPwd"
-				/>
-			</template>
-		</q-input>
+      <q-input v-model="password" bg-color="white" label="Contraseña" filled :type="isPwd ? 'password' : 'text'">
+        <template #append>
+          <q-icon
+            :name="isPwd ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd = !isPwd"
+          />
+        </template>
+      </q-input>
 
-		
-		<div class="action-btns">
-			<q-btn block label="Ingresar" type="submit" color="primary" :disable="!canLogin" />
-		</div>
-	</q-form>
+      <div class="action-btns">
+        <q-btn block label="Ingresar" type="submit" color="primary" :disable="!canLogin" />
+      </div>
+    </q-form>
 
-	<q-separator inset style="margin: 1rem 0" color="white"/>
+    <q-separator inset style="margin: 1rem 0" color="white" />
 
-	<Socials />
+    <Socials />
 
-	<div class="register-redirect-wrapper">
-		<p>¿Aún no estas registrado?</p>
-		<b><NuxtLink to="/register">Registrarme</NuxtLink></b>
-	</div>
+    <div class="register-redirect-wrapper">
+      <p>¿Aún no estas registrado?</p>
+      <b><NuxtLink to="/register">Registrarme</NuxtLink></b>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 
 definePageMeta({
-  layout: 'auth',
+  layout: 'auth'
 })
 
 const router = useRouter()
+const authStore = useAuthStore()
 
+const email = ref('')
+const password = ref('')
+const isPwd = ref(true)
 
-const authStore = useAuthStore();
-
-const email = ref('');
-const password = ref('');
-const isPwd = ref(true);
-
-const errorMsg = ref('');
+const errorMsg = ref('')
 
 const onSubmit = async () => {
-	try {
-		const {message, token} = await authStore.login(email.value, password.value);
-	
-		if (token) {
-			router.push({ path: 'browse/genre/all' });
-		} else {
-			errorMsg.value = message;
-		}
-	} catch (error) {
-		console.error('Error al inicial sesion: ', error);
-	}
+  try {
+    const { message, token } = await authStore.login(email.value, password.value)
+
+    if (token) {
+      router.push({ path: 'browse/genre/all' })
+    } else {
+      errorMsg.value = message
+    }
+  } catch (error) {
+    console.error('Error al inicial sesion: ', error)
+  }
 }
 
 const canLogin = computed(() => {
-	return email.value && password.value;
+  return email.value && password.value
 })
 </script>
-
 
 <style scoped lang="scss">
 	.error-message {
@@ -127,7 +125,6 @@ const canLogin = computed(() => {
 				align-items: center;
 				justify-content: center;
 				cursor: pointer;
-
 
 				img {
 					width: 40px;
