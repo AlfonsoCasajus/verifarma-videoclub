@@ -19,9 +19,16 @@ Para facilitar la correccion del challenge se dispuso las credenciales en el .en
 Tras clonar e instalar las dependencias puede correr el proyecto utilizando npm
 
 ```bash
+  npm install
   npm run dev
 ```
     
+## Tecnologias Usadas
+
+`Nuxt 3`
+`Typescript`
+`Sass`
+ `Quasar`
 ## Autor
 
 - [@alfonsoCasajus](https://www.github.com/AlfonsoCasajus)
