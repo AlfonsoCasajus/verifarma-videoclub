@@ -1,75 +1,28 @@
-# Nuxt 3 Minimal Starter
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# VideoFarma
 
-## Setup
+Prueba tecnica realizada por Alfonso Casajus para Verifarma.
 
-Make sure to install the dependencies:
 
-```bash
-# npm
-npm install
 
-# pnpm
-pnpm install
+## Variables de Entorno
 
-# yarn
-yarn install
+Para facilitar la correccion del challenge se dispuso las credenciales en el .env.example
 
-# bun
-bun install
-```
+`VUE_APP_OMDB_URL`
 
-## Development Server
+`VUE_APP_OMDB_API_KEY`
 
-Start the development server on `http://localhost:3000`:
+
+## Installation
+
+Tras clonar e instalar las dependencias puede correr el proyecto utilizando npm
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+  npm run dev
 ```
+    
+## Autor
 
-## Production
+- [@alfonsoCasajus](https://www.github.com/AlfonsoCasajus)
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
