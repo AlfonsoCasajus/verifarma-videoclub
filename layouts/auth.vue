@@ -6,13 +6,13 @@
 		<div class="banner-wrapper">
 			<NuxtImg src="images/logos/logo-verifarma.svg"  alt="Logo de la empresa" />
 			<div class="proyect-description">
-				<p>Codigo de Github</p>
-
-				Datos de prueba
+				
+				<p>Datos de prueba</p>
 				<ul>
 					<li>Usuario: info@verifarma.com</li>
 					<li>Contraseña: 123321</li>
 				</ul>
+				<a href="https://github.com/AlfonsoCasajus/verifarma-videoclub">Repositorio de Github</a>
 			</div>
 		</div>
 		<div class="auth-wrapper">
@@ -25,14 +25,11 @@
 </template>
 
 <style scoped lang="scss">
-	$surface-100: #fafafa;
-
 	section {
 		height: 100vh;
 		width: 100vw;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		background-color: $surface-100;
 
 		.banner-wrapper {
 			position: relative;
@@ -40,6 +37,7 @@
 			flex-direction: column;
 			align-items: center;
 			padding: 1rem;
+			background-color: #fafafa;
 
 			&::before {
 				content: "";
@@ -65,7 +63,7 @@
 				color: #fafafa;
 				padding: 1rem;
 				border-radius: 4px;
-				background-color: #1E1E1E;
+				background: rgb(1,203,146);
 				box-shadow:
 					0 4px 6px rgba(0, 0, 0, 0.1),
 					0 1px 3px rgba(0, 0, 0, 0.08);
@@ -83,6 +81,8 @@
 			box-shadow:
 				0 4px 6px rgba(0, 0, 0, 0.1),
 				0 1px 3px rgba(0, 0, 0, 0.08);
+			background-color: #14181C;
+			color: #fafafa;
 
 			.form-wrapper {
 				width: 70%;

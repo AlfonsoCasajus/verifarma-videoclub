@@ -1,19 +1,23 @@
 <template>
+	<div v-if="errorMsg" class="error-message">
+		{{ errorMsg }}
+	</div>
 	<q-form
-		@submit="onSubmit"
 		class="q-gutter-md"
+		@submit="onSubmit"
 	>
 		<q-input
-		v-model="email"
-		filled
-		label="Email"
-		type="email"
-		:rules="[ (val:string) => val && val.length > 0 || 'Email obligatorio']"
-		lazy-rules
+			v-model="email"
+			filled
+			label="Email"
+			type="email"
+			bg-color="white"
+			:rules="[ (val:string) => val && val.length > 0 || 'Email obligatorio']"
+			lazy-rules
 		/>
 
-		<q-input v-model="password" label="Contraseña" filled :type="isPwd ? 'password' : 'text'">
-			<template v-slot:append>
+		<q-input v-model="password" bg-color="white" label="Contraseña" filled :type="isPwd ? 'password' : 'text'">
+			<template #append>
 				<q-icon
 					:name="isPwd ? 'visibility_off' : 'visibility'"
 					class="cursor-pointer"
@@ -28,7 +32,7 @@
 		</div>
 	</q-form>
 
-	<q-separator inset style="margin: 1rem 0" />
+	<q-separator inset style="margin: 1rem 0" color="white"/>
 
 	<Socials />
 
@@ -39,18 +43,34 @@
 </template>
 
 <script setup lang="ts">
+
 definePageMeta({
   layout: 'auth',
 })
 
 const router = useRouter()
 
+
+const authStore = useAuthStore();
+
 const email = ref('');
 const password = ref('');
 const isPwd = ref(true);
 
-const onSubmit = () => {
-	router.push({ name: 'movies' });
+const errorMsg = ref('');
+
+const onSubmit = async () => {
+	try {
+		const {message, token} = await authStore.login(email.value, password.value);
+	
+		if (token) {
+			router.push({ path: 'browse/genre/all' });
+		} else {
+			errorMsg.value = message;
+		}
+	} catch (error) {
+		console.error('Error al inicial sesion: ', error);
+	}
 }
 
 const canLogin = computed(() => {
@@ -60,7 +80,18 @@ const canLogin = computed(() => {
 
 
 <style scoped lang="scss">
+	.error-message {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 50px;
+		font-size: 18px;
+		background-color: rgba(240, 36, 45, 0.5);
+		border-radius: 4px;
+	}
+
 	.form-wrapper {
+		margin: 0;
 		.action-btns {
 			display: flex;
 			align-items: center;

@@ -1,19 +1,26 @@
 <template>
 		<q-form
-		  @submit="onSubmit"
 		  class="q-gutter-md"
+		  @submit="onSubmit"
 		>
 		  <q-input
 		  v-model="email"
 		  	filled
 			label="Email"
 			type="email"
+			bg-color="white"
 			:rules="[ (val:string) => val && val.length > 0 || 'Email obligatorio']"
 			lazy-rules
 		  />
 	
-		  <q-input v-model="password" label="Contraseña" filled :type="isPwdVisible ? 'password' : 'text'" :rules="[ (val:string) => val && val.length >= 5 || 'Minimo 5 caracteres']">
-				<template v-slot:append>
+		  <q-input v-model="password"
+			bg-color="white"
+			label="Contraseña"
+			filled
+			:type="isPwdVisible ? 'password' : 'text'"
+			:rules="[ (val:string) => val && val.length >= 5 || 'Minimo 5 caracteres']"
+		  >
+				<template #append>
 					<q-icon
 						:name="isPwdVisible ? 'visibility_off' : 'visibility'"
 						class="cursor-pointer"
@@ -22,11 +29,15 @@
 				</template>
 			</q-input>
 		
-		  <q-input v-model="repeatedPassword" label="Repetir contraseña" filled
-		  :type="isRepeatedPwdVisible ? 'password' : 'text'"
-		  :rules="[ (val:string) => val && val === password || 'Las contraseñas deben coincidir']"
+		  <q-input
+			v-model="repeatedPassword"
+			label="Repetir contraseña"
+			bg-color="white"
+			filled
+			:type="isRepeatedPwdVisible ? 'password' : 'text'"
+			:rules="[ (val:string) => val && val === password || 'Las contraseñas deben coincidir']"
 		  >
-				<template v-slot:append>
+				<template #append>
 					<q-icon
 						:name="isRepeatedPwdVisible ? 'visibility_off' : 'visibility'"
 						class="cursor-pointer"
@@ -40,7 +51,7 @@
 				<q-btn block label="Registrarme" type="submit" color="primary" :disabled="!canRegister" />
 			</div>
 			
-			<q-separator inset />
+			<q-separator inset color="white" />
 
 			<Socials />
 
@@ -70,7 +81,7 @@ const canRegister = computed(() => {
 
 
 const onSubmit = () => {
-	router.push({ name: 'movies' });
+	router.push({ name: '/browse/all' });
 }
 </script>
 
