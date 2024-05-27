@@ -1,10 +1,8 @@
-
-
 <template>
-	<div class="message-wrapper">
-		<q-icon size="35px" name="movie" />
-		<p>{{ message }}</p>
-	</div>
+  <div class="message-wrapper">
+    <q-icon size="35px" name="movie" />
+    <p>{{ message }}</p>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -13,7 +11,7 @@ const props = defineProps({
   message: {
     type: String,
     required: false,
-	default: 'No hay elementos para mostrar'
+    default: 'No hay elementos para mostrar'
   }
 })
 

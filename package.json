@@ -12,6 +12,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@nuxt/eslint": "^0.3.13",
     "@nuxt/image": "^1.7.0",
     "@pinia/nuxt": "^0.5.1",
     "@quasar/extras": "^1.16.11",
