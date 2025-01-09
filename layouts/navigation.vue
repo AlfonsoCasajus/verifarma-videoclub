@@ -2,6 +2,7 @@
   <section>
     <Head>
       <Title>VideoFarma - Alfonso Casajus</Title>
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     </Head>
     <q-layout container style="height: 100vh">
       <q-header elevated>
