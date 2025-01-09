@@ -1,7 +1,7 @@
 <template>
   <section>
     <Head>
-      <Title>VideoFarma</Title>
+      <Title>VideoFarma - Alfonso Casajus</Title>
     </Head>
     <q-layout container style="height: 100vh">
       <q-header elevated>
