@@ -1,9 +1,5 @@
 <template>
   <section>
-    <Head>
-      <Title>VideoFarma - Alfonso Casajus</Title>
-      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    </Head>
     <q-layout container style="height: 100vh">
       <q-header elevated>
         <q-toolbar class="navigation">
@@ -47,6 +43,17 @@
   </section>
 </template>
 <script setup lang="ts">
+
+useHead({
+  title: 'VideoFarma - Alfonso Casajus',
+  meta: [
+      { 
+        'http-equiv': 'Content-Security-Policy', 
+        content: 'upgrade-insecure-requests' 
+      }
+  ]
+})
+
 const router = useRouter()
 
 const authStore = useAuthStore()
